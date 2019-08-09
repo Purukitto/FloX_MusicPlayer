@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flox/app.dart';
-import 'package:flox/themes.dart';
+//import 'package:flutter/services.dart';
 
-void main() => runApp(new MyMaterialApp());
+void main() {
+  //SystemChrome.setEnabledSystemUIOverlays([]);
+  runApp(
+    new MyMaterialApp(),
+  );
+}
 
 class MyMaterialApp extends StatefulWidget {
   @override

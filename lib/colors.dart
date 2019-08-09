@@ -33,3 +33,20 @@ const MaterialColor primaryPink = MaterialColor(
   },
 );
 const int _pinkPrimaryValue = 0xFFE45284;
+
+const MaterialColor primaryPurple = MaterialColor(
+  _purpPrimaryValue,
+  <int, Color>{
+    50: Color(0xFF46339E),
+    100: Color(0xFF46339E),
+    200: Color(0xFF46339E),
+    300: Color(0xFF46339E),
+    400: Color(0xFF46339E),
+    500: Color(_purpPrimaryValue),
+    600: Color(0xFF46339E),
+    700: Color(0xFF46339E),
+    800: Color(0xFF46339E),
+    900: Color(0xFF46339E),
+  },
+);
+const int _purpPrimaryValue = 0xFF46339E;
