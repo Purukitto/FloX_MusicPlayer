@@ -5,3 +5,6 @@
 A feature loaded music player with clean, refreshing UI
 
 
+## Update 1: Static UI
+
+<img src="https://github.com/Purukitto/FloX_MusicPlayer/blob/master/git_assests/1.png"  width="300">
