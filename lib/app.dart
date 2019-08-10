@@ -2,7 +2,8 @@ import 'package:flox/colors.dart';
 import 'package:flox/songs.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
-import 'package:flox/NameNControls.dart';
+import 'package:flox/components/NameNControls.dart';
+import 'package:flox/components/radial_seek.dart';
 
 class MyApp extends StatefulWidget {
   @override
@@ -36,17 +37,20 @@ class _MyAppState extends State<MyApp> {
           //Seek Bar
           new Expanded(
             child: new Center(
-                child: new Container(
-              width: 150,
-              height: 150,
-              child: new ClipOval(
-                clipper: new CircleClipper(),
-                child: new Image.network(
-                  demoPlaylist.songs[2].albumArtUrl,
-                  fit: BoxFit.cover,
+              child: new Container(
+                width: 150,
+                height: 150,
+                child: BuildSeek(
+                  child: new ClipOval(
+                    clipper: new CircleClipper(),
+                    child: new Image.network(
+                      demoPlaylist.songs[2].albumArtUrl,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
               ),
-            )),
+            ),
           ),
 
           // Song info
@@ -55,7 +59,7 @@ class _MyAppState extends State<MyApp> {
           new Container(
             width: double.infinity,
             height: 175,
-          )
+          ),
         ],
       ),
     );
@@ -75,3 +79,42 @@ class CircleClipper extends CustomClipper<Rect> {
     return true;
   }
 }
+
+/*
+
+class RadialSeekBar extends StatefulWidget {
+  final double trackWidth;
+  final Color trackColor;
+  final double progressWidth;
+  final Color progressColor;
+  final double progressPercent;
+  final double thumbSize;
+  final Color thumbColor;
+  final double thumbPosition;
+  final Widget child;
+
+  RadialSeekBar({
+    this.trackWidth =3,
+    this.trackColor = Colors.grey,
+    this.progressWidth= 5,
+    this.progressColor=primaryBlack,
+    this.progressPercent=0,
+    this.thumbSize=10,
+    this.thumbColor=primaryBlack,
+    this.thumbPosition=0,
+    this.child,
+  })
+
+  @override
+  _SeekBarState createState() => new _SeekBarState();
+}
+
+class _SeekBarState extends State<RadialSeekBar> {
+  @override
+  Widget build(BuildContext context) {
+    return new CustomPaint(
+      painter: new RadialSeekBar(),
+    );
+  }
+}
+*/
