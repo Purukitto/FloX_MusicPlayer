@@ -92,12 +92,12 @@ class RadialSeekBar extends StatefulWidget {
 
   RadialSeekBar({
     this.trackWidth = 3,
-    this.trackColor = Colors.grey,
+    this.trackColor = primaryPink,
     this.progressWidth = 5,
-    this.progressColor = primaryBlack,
+    this.progressColor = primaryPurple,
     this.progressPercent = 0,
     this.thumbSize = 10,
-    this.thumbColor = primaryBlack,
+    this.thumbColor = primaryPurple,
     this.thumbPosition = 0,
     this.child,
   });
@@ -120,6 +120,7 @@ class _SeekBarState extends State<RadialSeekBar> {
         thumbColor: widget.thumbColor,
         thumbPosition: widget.thumbPosition,
       ),
+      child: widget.child,
     );
   }
 }
@@ -159,10 +160,25 @@ class RadialSeekBarPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final center = new Offset(size.width / 2, size.height / 2);
     final radius = min(size.height, size.width) / 2;
+
+    //Paint track
     canvas.drawCircle(
       center,
       radius,
       trackPaint,
+    );
+
+    //Paint Progress
+    final progressAngle = 2 * pi * progressPercent;
+    canvas.drawArc(
+      new Rect.fromCircle(
+        center: center,
+        radius: radius,
+      ),
+      -pi / 2,
+      progressAngle,
+      false,
+      progressPaint,
     );
   }
 
