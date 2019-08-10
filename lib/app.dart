@@ -37,9 +37,12 @@ class _MyAppState extends State<MyApp> {
           new Expanded(
             child: new Center(
               child: new Container(
-                width: 150,
-                height: 150,
+                width: 200,
+                height: 200,
                 child: new RadialSeekBar(
+                  progressPercent: 0.2,
+                  thumbPosition: 0.2,
+                  innerPadding: const EdgeInsets.all(10),
                   child: new ClipOval(
                     clipper: new CircleClipper(),
                     child: new Image.network(
@@ -88,6 +91,8 @@ class RadialSeekBar extends StatefulWidget {
   final double thumbSize;
   final Color thumbColor;
   final double thumbPosition;
+  final EdgeInsets innerPadding;
+  final EdgeInsets outerPadding;
   final Widget child;
 
   RadialSeekBar({
@@ -99,6 +104,8 @@ class RadialSeekBar extends StatefulWidget {
     this.thumbSize = 10,
     this.thumbColor = primaryPurple,
     this.thumbPosition = 0,
+    this.outerPadding = const EdgeInsets.all(0),
+    this.innerPadding = const EdgeInsets.all(0),
     this.child,
   });
 
@@ -107,20 +114,35 @@ class RadialSeekBar extends StatefulWidget {
 }
 
 class _SeekBarState extends State<RadialSeekBar> {
+  EdgeInsets _insetsForPainter() {
+    final outerThickness = max(
+          widget.trackWidth,
+          max(widget.progressWidth, widget.thumbSize),
+        ) /
+        2;
+    return new EdgeInsets.all(outerThickness);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return new CustomPaint(
-      painter: new RadialSeekBarPainter(
-        trackWidth: widget.trackWidth,
-        trackColor: widget.trackColor,
-        progressWidth: widget.progressWidth,
-        progressColor: widget.progressColor,
-        progressPercent: widget.progressPercent,
-        thumbSize: widget.thumbSize,
-        thumbColor: widget.thumbColor,
-        thumbPosition: widget.thumbPosition,
+    return new Padding(
+      padding: widget.outerPadding,
+      child: new CustomPaint(
+        foregroundPainter: new RadialSeekBarPainter(
+          trackWidth: widget.trackWidth,
+          trackColor: widget.trackColor,
+          progressWidth: widget.progressWidth,
+          progressColor: widget.progressColor,
+          progressPercent: widget.progressPercent,
+          thumbSize: widget.thumbSize,
+          thumbColor: widget.thumbColor,
+          thumbPosition: widget.thumbPosition,
+        ),
+        child: new Padding(
+          padding: _insetsForPainter() + widget.innerPadding,
+          child: widget.child,
+        ),
       ),
-      child: widget.child,
     );
   }
 }
@@ -158,8 +180,14 @@ class RadialSeekBarPainter extends CustomPainter {
           ..style = PaintingStyle.fill;
   @override
   void paint(Canvas canvas, Size size) {
+    final outerThickness = max(trackWidth, max(progressWidth, thumbSize));
+    Size contrainedSize = new Size(
+      size.width - outerThickness,
+      size.height - outerThickness,
+    );
+
     final center = new Offset(size.width / 2, size.height / 2);
-    final radius = min(size.height, size.width) / 2;
+    final radius = min(contrainedSize.height, contrainedSize.width) / 2;
 
     //Paint track
     canvas.drawCircle(
@@ -179,6 +207,18 @@ class RadialSeekBarPainter extends CustomPainter {
       progressAngle,
       false,
       progressPaint,
+    );
+
+    //Paint thumb
+    final thumbAngle = 2 * pi * thumbPosition - (pi / 2);
+    final thumbX = cos(thumbAngle) * radius;
+    final thumbY = sin(thumbAngle) * radius;
+    final thumbCenter = new Offset(thumbX, thumbY) + center;
+    final thumbRadius = thumbSize / 2;
+    canvas.drawCircle(
+      thumbCenter,
+      thumbRadius,
+      thumbPaint,
     );
   }
 
