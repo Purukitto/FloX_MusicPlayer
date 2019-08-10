@@ -40,13 +40,14 @@ class _MyAppState extends State<MyApp> {
                 width: 200,
                 height: 200,
                 child: new RadialSeekBar(
+                  trackColor: primaryPink.withOpacity(.65),
                   progressPercent: 0.2,
                   thumbPosition: 0.2,
                   innerPadding: const EdgeInsets.all(10),
                   child: new ClipOval(
                     clipper: new CircleClipper(),
                     child: new Image.network(
-                      demoPlaylist.songs[2].albumArtUrl,
+                      demoPlaylist.songs[0].albumArtUrl,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -57,6 +58,7 @@ class _MyAppState extends State<MyApp> {
 
           // Song info
           new NameNControls(),
+
           //Visualiser
           new Container(
             width: double.infinity,
