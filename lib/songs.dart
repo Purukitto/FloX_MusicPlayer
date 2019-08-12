@@ -7,7 +7,7 @@ final demoPlaylist = new DemoPlaylist(
       audioUrl:
           'https://api.soundcloud.com/tracks/538699323/stream?secret_token=s-tj3IS&client_id=LBCcHmRB8XSStWL6wKH2HPACspQlXg2P',
       albumArtUrl:
-          'https://i1.sndcdn.com/avatars-000312484264-af28qp-t200x200.jpg',
+          'https://vignette.wikia.nocookie.net/darling-in-the-franxx/images/f/fb/KISS_OF_DEATH_Anime_Edition_cover.jpg/revision/latest/scale-to-width-down/310?cb=20180430001655',
       songTitle: 'Perfect Saxophone',
       artist: 'Simon More',
     ),

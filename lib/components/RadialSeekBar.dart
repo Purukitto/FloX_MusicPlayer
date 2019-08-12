@@ -77,15 +77,10 @@ class _RaidalDragBarState extends State<RaidalDragBar> {
               innerPadding: const EdgeInsets.all(10),
               child: new ClipOval(
                 clipper: new CircleClipper(),
-                child: Image.asset(
-                  "assets/kod.jpg",
-                  fit: BoxFit.cover,
-                ),
-                /*
                 child: new Image.network(
                   demoPlaylist.songs[0].albumArtUrl,
                   fit: BoxFit.cover,
-                ), */
+                ),
               ),
             ),
           ),
