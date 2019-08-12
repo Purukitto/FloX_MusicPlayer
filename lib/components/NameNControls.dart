@@ -1,5 +1,6 @@
 import 'package:flox/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttery_audio/fluttery_audio.dart';
 
 class NameNControls extends StatelessWidget {
   const NameNControls({
@@ -87,22 +88,43 @@ class PlayButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new RawMaterialButton(
-      shape: new CircleBorder(),
-      fillColor: primaryPink,
-      highlightColor: accentPurple,
-      splashColor: primaryPurple,
-      elevation: 5,
-      highlightElevation: 4,
-      onPressed: () {},
-      child: new Padding(
-        padding: const EdgeInsets.all(8),
-        child: new Icon(
-          Icons.play_arrow,
-          color: primaryBlack,
-          size: 30,
-        ),
-      ),
+    return AudioComponent(
+      updateMe: [
+        WatchableAudioProperties.audioPlayerState,
+      ],
+      playerBuilder: (BuildContext context, AudioPlayer player, Widget child) {
+        IconData icon = Icons.music_note;
+        Color buttonColor = accentPurple;
+        Function onPressed;
+
+        if (player.state == AudioPlayerState.playing) {
+          icon = Icons.pause;
+          onPressed = player.pause;
+          buttonColor = primaryPink;
+        } else if (player.state == AudioPlayerState.paused ||
+            player.state == AudioPlayerState.completed) {
+          icon = Icons.play_arrow;
+          onPressed = player.play;
+          buttonColor = primaryPink;
+        }
+        return new RawMaterialButton(
+          shape: new CircleBorder(),
+          fillColor: buttonColor,
+          highlightColor: accentPurple,
+          splashColor: primaryPurple,
+          elevation: 5,
+          highlightElevation: 4,
+          onPressed: onPressed,
+          child: new Padding(
+            padding: const EdgeInsets.all(8),
+            child: new Icon(
+              icon,
+              color: primaryBlack,
+              size: 30,
+            ),
+          ),
+        );
+      },
     );
   }
 }

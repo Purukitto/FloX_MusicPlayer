@@ -26,7 +26,7 @@ dependencies:
   fluttery: ^0.0.8
   fluttery_seekbar: ^0.0.1
   fluttery_audio: ^0.0.4
-
+  flute_music_player:
   
 dev_dependencies:
   flutter_test:
