@@ -4,6 +4,13 @@
 # FloX_MusicPlayer
 A feature loaded open-source music player with clean, refreshing UI
 
+<br>
+
+## Contribute
+All contributions are welcome.
+Please give me 24-48 hours to review and merge your pull requests.
+
+<br>
 
 ## Update 2: Static UI
 
