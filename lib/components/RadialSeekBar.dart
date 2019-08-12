@@ -67,8 +67,8 @@ class _RaidalDragBarState extends State<RaidalDragBar> {
         color: Colors.transparent,
         child: new Center(
           child: new Container(
-            width: 200,
-            height: 200,
+            width: 230,
+            height: 230,
             child: new RadialSeekBar(
               trackColor: primaryPink.withOpacity(.65),
               progressPercent: _currentDragPercent ?? _seekPercent,

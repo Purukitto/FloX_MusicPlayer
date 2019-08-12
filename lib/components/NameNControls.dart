@@ -34,7 +34,7 @@ class NameNControls extends StatelessWidget {
           ]),
         ),
         new Padding(
-          padding: const EdgeInsets.only(top: 45),
+          padding: const EdgeInsets.only(top: 50),
           child: new Row(
             children: <Widget>[
               new Expanded(

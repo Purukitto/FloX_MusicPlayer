@@ -32,10 +32,20 @@ class _MyAppState extends State<MyApp> {
       ),
       body: new Column(
         children: <Widget>[
+          Container(
+            height: 75,
+          ),
           //Seek Bar
-          new Expanded(
+          Container(
+            height: 230,
+            width: 230,
             child: new RaidalDragBar(),
           ),
+
+          Container(
+            height: 50,
+          ),
+
           // Song info
           new NameNControls(),
 
