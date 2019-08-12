@@ -1,7 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
 
 final demoPlaylist = new DemoPlaylist(
   songs: [
+    new DemoSong(
+      audioUrl:
+          'https://api.soundcloud.com/tracks/538699323/stream?secret_token=s-tj3IS&client_id=LBCcHmRB8XSStWL6wKH2HPACspQlXg2P',
+      albumArtUrl:
+          'https://i1.sndcdn.com/avatars-000312484264-af28qp-t200x200.jpg',
+      songTitle: 'Perfect Saxophone',
+      artist: 'Simon More',
+    ),
     new DemoSong(
       audioUrl:
           'https://api.soundcloud.com/tracks/434370309/stream?secret_token=s-tj3IS&client_id=LBCcHmRB8XSStWL6wKH2HPACspQlXg2P',
