@@ -3,6 +3,7 @@ import 'package:flox/songs.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:flox/components/NameNControls.dart';
+import 'package:fluttery/gestures.dart';
 
 class MyApp extends StatefulWidget {
   @override
@@ -10,6 +11,32 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  double _seekPercent = 0.1;
+  PolarCoord _startDragCoord;
+  double _startDragPercent;
+  double _currentDragPercent;
+  void _onDragStart(PolarCoord coord) {
+    _startDragCoord = coord;
+    _startDragPercent = _seekPercent;
+  }
+
+  void _onDragUpdate(PolarCoord coord) {
+    final dragAngle = coord.angle - _startDragCoord.angle;
+    final dragPercent = dragAngle / (2 * pi);
+    setState(() {
+      _currentDragPercent = (_startDragPercent + dragPercent) % 1;
+    });
+  }
+
+  void _onDragEnd() {
+    setState(() {
+      _seekPercent = _currentDragPercent;
+      _currentDragPercent = null;
+      _startDragCoord = null;
+      _startDragPercent = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -35,20 +62,31 @@ class _MyAppState extends State<MyApp> {
         children: <Widget>[
           //Seek Bar
           new Expanded(
-            child: new Center(
+            child: new RadialDragGestureDetector(
+              onRadialDragStart: _onDragStart,
+              onRadialDragUpdate: _onDragUpdate,
+              onRadialDragEnd: _onDragEnd,
               child: new Container(
-                width: 200,
-                height: 200,
-                child: new RadialSeekBar(
-                  trackColor: primaryPink.withOpacity(.65),
-                  progressPercent: 0.2,
-                  thumbPosition: 0.2,
-                  innerPadding: const EdgeInsets.all(10),
-                  child: new ClipOval(
-                    clipper: new CircleClipper(),
-                    child: new Image.network(
-                      demoPlaylist.songs[0].albumArtUrl,
-                      fit: BoxFit.cover,
+                width: double.infinity,
+                height: double.infinity,
+                color: Colors.transparent,
+                child: new Center(
+                  child: new Container(
+                    width: 200,
+                    height: 200,
+                    child: new RadialSeekBar(
+                      trackColor: primaryPink.withOpacity(.65),
+                      progressPercent: _currentDragPercent ?? _seekPercent,
+                      thumbPosition: _currentDragPercent ?? _seekPercent,
+                      thumbColor: accentPurple,
+                      innerPadding: const EdgeInsets.all(10),
+                      child: new ClipOval(
+                        clipper: new CircleClipper(),
+                        child: new Image.network(
+                          demoPlaylist.songs[0].albumArtUrl,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
                   ),
                 ),

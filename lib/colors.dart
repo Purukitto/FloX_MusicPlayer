@@ -50,3 +50,20 @@ const MaterialColor primaryPurple = MaterialColor(
   },
 );
 const int _purpPrimaryValue = 0xFF46339E;
+
+const MaterialColor accentPurple = MaterialColor(
+  _purpAccentValue,
+  <int, Color>{
+    50: Color(0xFF5c4bad),
+    100: Color(0xFF5c4bad),
+    200: Color(0xFF5c4bad),
+    300: Color(0xFF5c4bad),
+    400: Color(0xFF5c4bad),
+    500: Color(_purpAccentValue),
+    600: Color(0xFF5c4bad),
+    700: Color(0xFF5c4bad),
+    800: Color(0xFF5c4bad),
+    900: Color(0xFF5c4bad),
+  },
+);
+const int _purpAccentValue = 0xFF5c4bad;
