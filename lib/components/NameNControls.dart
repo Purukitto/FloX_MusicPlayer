@@ -34,7 +34,7 @@ class NameNControls extends StatelessWidget {
           ]),
         ),
         new Padding(
-          padding: const EdgeInsets.only(top: 50),
+          padding: const EdgeInsets.only(top: 40),
           child: new Row(
             children: <Widget>[
               new Expanded(
@@ -90,9 +90,9 @@ class PlayButton extends StatelessWidget {
     return new RawMaterialButton(
       shape: new CircleBorder(),
       fillColor: primaryPink,
-      highlightColor: primaryPurple.withOpacity(.75),
+      highlightColor: accentPurple,
       splashColor: primaryPurple,
-      elevation: 8,
+      elevation: 5,
       highlightElevation: 4,
       onPressed: () {},
       child: new Padding(

@@ -25,6 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.0
   fluttery: ^0.0.8
   fluttery_seekbar: ^0.0.1
+  fluttery_audio: ^0.0.4
 
   
 dev_dependencies:

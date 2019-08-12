@@ -43,7 +43,7 @@ class _MyAppState extends State<MyApp> {
           ),
 
           Container(
-            height: 50,
+            height: 70,
           ),
 
           // Song info
