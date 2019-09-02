@@ -44,9 +44,24 @@ class _MyAppState extends State<MyApp> {
             Container(
               height: 230,
               width: 230,
-              child: new RaidalDragBar(),
+              child: AudioComponent(
+                updateMe: [
+                  WatchableAudioProperties.audioPlayhead,
+                  WatchableAudioProperties.audioSeeking,
+                ],
+                playerBuilder:
+                    (BuildContext context, AudioPlayer player, Widget child) {
+                  double playbackProgress = 0;
+                  if (player.audioLength != null && player.position != null) {
+                    playbackProgress = player.position.inMilliseconds /
+                        player.audioLength.inMilliseconds;
+                  }
+                  return new RaidalDragBar(
+                    seekPercent: playbackProgress,
+                  );
+                },
+              ),
             ),
-
             Container(
               height: 70,
             ),
