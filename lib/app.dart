@@ -14,7 +14,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Audio(
-      audioUrl: demoPlaylist.songs[1].audioUrl,
+      audioUrl: demoPlaylist.songs[0].audioUrl,
       playbackState: PlaybackState.paused,
       child: new Scaffold(
         backgroundColor: primaryBlack,

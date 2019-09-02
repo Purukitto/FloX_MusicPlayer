@@ -1,6 +1,7 @@
 import 'package:flox/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttery_audio/fluttery_audio.dart';
+import 'package:flox/songs.dart';
 
 class NameNControls extends StatelessWidget {
   const NameNControls({
@@ -15,7 +16,7 @@ class NameNControls extends StatelessWidget {
           textAlign: TextAlign.center,
           text: new TextSpan(text: "", children: [
             new TextSpan(
-              text: 'Song Title\n',
+              text: demoPlaylist.songs[0].songTitle + "\n",
               style: new TextStyle(
                 color: primaryPink,
                 fontSize: 14,
@@ -25,7 +26,7 @@ class NameNControls extends StatelessWidget {
               ),
             ),
             new TextSpan(
-                text: 'Artist Name',
+                text: demoPlaylist.songs[0].artist,
                 style: new TextStyle(
                   color: primaryPink.withOpacity(.75),
                   fontSize: 12,
