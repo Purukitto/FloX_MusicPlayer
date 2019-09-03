@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flox/colors.dart';
 import 'package:flox/songs.dart';
 import 'package:flutter/material.dart';
